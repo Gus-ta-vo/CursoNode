@@ -1,7 +1,9 @@
 //const argumentos = require("process") No fue necesario agregar, lo toma sin require
+const colors = require('colors')
 const crearArchivo = require ("./creararchivo.js");
 const parametros = process.argv
 
+console.log(colors.rainbow("Generador tabla de multiplicar"))
 let argumento = parametros[2].split("=")
 const base = Number(argumento[1])
 if ( argumento[0] == "--base" && (base > 0) ){
