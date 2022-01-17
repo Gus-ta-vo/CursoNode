@@ -1,5 +1,4 @@
-//const argumentos = require("process")
-const { isNumber } = require("util");
+//const argumentos = require("process") No fue necesario agregar, lo toma sin require
 const crearArchivo = require ("./creararchivo.js");
 const parametros = process.argv
 
