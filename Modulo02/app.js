@@ -1,20 +1,29 @@
-var fs = require('fs');
+//const argumentos = require("process")
+const { isNumber } = require("util");
+const crearArchivo = require ("./creararchivo.js");
+const parametros = process.argv
 
-console.log("Modulo 2 tarea 2");
-
-let resultado = ""
-const cinco = 5
-for (let numero = 1; numero < 11; numero++){
-//    console.log(cinco + " X " + numero + " = " + cinco*numero)
-    resultado= resultado + (`${cinco} X ${numero} = ${cinco * numero}`);
-    if (numero < 10) {
-        resultado= resultado + (`\n`);
-    } 
+let argumento = parametros[2].split("=")
+const base = Number(argumento[1])
+if ( argumento[0] == "--base" && (base > 0) ){
+        console.log("Parametro correcto. Procesando...")
+        let resultado = ""
+        for (let numero = 1; numero < 11; numero++){
+        //    console.log(cinco + " X " + numero + " = " + cinco*numero)
+            resultado= resultado + (`${base} X ${numero} = ${base * numero}`);
+            if (numero < 10) {
+                resultado= resultado + (`\n`);
+            } 
+        }
+        console.log(resultado);
+        
+        const nombreArchivo = "tabla-" + base + ".txt"
+        crearArchivo.crearArchivo(nombreArchivo, resultado)
+    }
+    else{
+    console.log("Parametro no reconocido. Intente con --base=<numero>")
 }
-console.log(resultado);
 
-fs.writeFile("tabla-5.txt", resultado, (errorArchivo) => {
-    if (errorArchivo) throw errorArchivo;
-    console.log('Archivo Grabado!');
-});
+// Con la siguiente linea grabo el archivo con el contenido Hola, sin tener en cuenta si fue correcto o incorrecto
+// fs.writeFile("pepe","Hola",()=>{})
 
