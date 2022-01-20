@@ -1,6 +1,4 @@
-//const argumentos = require("process") No fue necesario agregar, lo toma sin require
 const colors = require('colors');
-const { argv, option, options } = require('yargs');
 const crearArchivo = require ("./creararchivo.js");
 const parametros = require ("yargs")
     .options({
@@ -12,11 +10,11 @@ const parametros = require ("yargs")
         'l': {
         alias: 'listar',
         type: 'boolean',
-        demandOption: false,
+        demandOption: true,
         default: false
     }})
-    .check((argv, options) => {
-        if (argv.base <1 || argv.base > 20) {
+    .check((parametros, options) => {
+        if (parametros.base <1 || parametros.base > 20) {
             throw new Error("Debes colocar un valor de base entre 1 y 20")
         } else {
             console.log("Parametro correcto. Procesando...")
@@ -27,7 +25,7 @@ const parametros = require ("yargs")
 
 //console.log(parametros)
 //const parametros = process.argv
-base=argv.base
+base=parametros.base
 console.log(colors.rainbow("Generador tabla de multiplicar"))
 
 let resultado = ""
@@ -37,7 +35,7 @@ for (let numero = 1; numero < 11; numero++){
         resultado= resultado + (`\n`);
     }
 }
-if (parametros.listar) {
+if (parametros.listar == true) {
     console.log(resultado);
 }
 
