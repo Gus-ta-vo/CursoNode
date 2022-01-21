@@ -27,14 +27,26 @@ const parametros = require ("yargs")
         demandOption: false,
         default: false
     })
+    .option(
+        'c', {
+        alias: 'cantidad',
+        type: 'number',
+        describe: 'Cantidad de veces a multiplicar',
+        demandOption: false,
+        default: 10
+    })
  // Esta validación no es necesaria, ya que valida automáticamente con el contenido de choices
  // Si se desactiva choices, está validación funciona
     .check((parametros, options) => {
         if (parametros.base <1 || parametros.base > 20) {
             throw new Error("Debes colocar un valor de base entre 1 y 20")
         } else {
-            console.log("Parametro correcto. Procesando...")
-            return true
+            if (parametros.cantidad < 1) {
+                throw new Error("Debes colocar un valor positivo")
+            } else {
+                console.log("Parametro correcto. Procesando...")
+                return true
+            }
         }
     }) 
     .argv;
