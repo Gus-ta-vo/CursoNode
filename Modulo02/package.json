@@ -1,0 +1,31 @@
+{
+  "dependencies": {
+    "colors": "^1.4.0",
+    "yargs": "^17.3.1"
+  },
+  "name": "modulo02",
+  "version": "1.0.0",
+  "description": "Agregado de colores",
+  "main": "app.js",
+  "scripts": {
+    "test": "node app --base=5"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Gus-ta-vo/CursoNode.git"
+  },
+  "keywords": [
+    "CURSO"
+  ],
+  "author": "Gustavo Gaudiano",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Gus-ta-vo/CursoNode/issues"
+  },
+  "homepage": "https://github.com/Gus-ta-vo/CursoNode#readme",
+  "devDependencies": {
+    "eslint": "^8.7.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.25.4"
+  }
+}
