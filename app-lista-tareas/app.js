@@ -1,13 +1,13 @@
 const mensajes = require('./helpers/mensajes');
 
 console.clear();
+
 const main = async () => {
-  try {
-    mensajes.mostrarMenu();
-  } catch (error) {
-    console.log(error);
-  }
+  let opcion = '0';
+  do {
+    opcion = await mensajes.mostrarMenu();
+    await mensajes.pausa();
+  } while (opcion !== '0');
 };
 
 main();
-// mensajes.pausa()
