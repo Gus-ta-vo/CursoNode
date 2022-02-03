@@ -1,10 +1,25 @@
-//const argumentos = require("process") No fue necesario agregar, lo toma sin require
-const colors = require('colors')
-const crearArchivo = require ("./creararchivo.js");
-const parametros = require ("yargs").argv
+// const argumentos = require("process") No fue necesario agregar, lo toma sin require
+const colors = require('colors');
+const { argv, option, options } = require('yargs');
+const parametros = require('yargs')
+  .option('b', {
+    alias: 'base',
+    type: 'number',
+    demandOption: true,
+  })
+  .check((argv, options) => {
+    argv.base = Number(argv.base);
+    if (argv.base > 0) {
+      return true;
+    }
 
-console.log(parametros)
-//const parametros = process.argv
+    throw new Error('base debe ser un numero y mayor que 0');
+  })
+  .argv;
+const crearArchivo = require('./creararchivo');
+
+console.log(parametros);
+// const parametros = process.argv
 
 /*
 console.log(colors.rainbow("Generador tabla de multiplicar"))
@@ -18,10 +33,10 @@ if ( argumento[0] == "--base" && (base > 0) ){
             resultado= resultado + (`${base} X ${numero} = ${base * numero}`);
             if (numero < 10) {
                 resultado= resultado + (`\n`);
-            } 
+            }
         }
         console.log(resultado);
-        
+
         const nombreArchivo = "tabla-" + base + ".txt"
         crearArchivo.crearArchivo(nombreArchivo, resultado)
     }
