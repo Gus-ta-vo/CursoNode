@@ -1,5 +1,6 @@
 const mensajes = require('./helpers/inquirer');
 const Tareas = require('./models/tareas');
+const { guardarDB } = require('./helpers/guardarArchivo');
 
 console.clear();
 
@@ -19,6 +20,8 @@ const main = async () => {
       default:
         break;
     }
+    console.log('Guardando cambios...');
+    guardarDB('./database/tareas.json', JSON.stringify(tareas.listadoArreglo));
     await mensajes.pausa();
   } while (opcion.opcion !== 0);
 };
