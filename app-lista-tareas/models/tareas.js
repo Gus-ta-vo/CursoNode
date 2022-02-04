@@ -32,6 +32,15 @@ class Tareas {
       console.log(` ${colors.green(indice + 1)} ${colors.white(elemento.desc)} :: ${(elemento.completadoEn) ? colors.green('COMPLETA') : colors.red('PENDIENTE')}`);
     });
   }
+
+  listarPendientesCompletadas(completadas = true) {
+    this.listadoArreglo.forEach((elemento, indice) => {
+      if ((completadas && elemento.completadoEn !== null)
+          || (!completadas && elemento.completadoEn == null)) {
+        console.log(` ${colors.green(indice + 1)} ${colors.white(elemento.desc)} :: ${(elemento.completadoEn) ? colors.green('COMPLETA') : colors.red('PENDIENTE')}`);
+      }
+    });
+  }
 }
 
 module.exports = Tareas;
