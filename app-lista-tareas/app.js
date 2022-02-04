@@ -13,7 +13,7 @@ const main = async () => {
         tareas.crearTarea(await mensajes.ingresarDato('Descripcion de la tarea:'));
         break;
       case 2:
-        console.log(tareas.listado);
+        console.log(tareas.listadoArreglo);
         break;
 
       default:
