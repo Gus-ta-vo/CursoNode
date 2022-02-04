@@ -37,4 +37,20 @@ const pausa = async () => {
     ]);
 };
 
-module.exports = { mostrarMenu, pausa };
+const ingresarDato = async (mensaje) => {
+  const { dato } = await inquirer
+    .prompt([
+      {
+        type: 'input',
+        name: 'dato',
+        message: mensaje,
+        validate(text) {
+          if (text.length === 0) { return 'Por favor ingrese un valor'; }
+          return true;
+        },
+      },
+    ]);
+  return dato;
+};
+
+module.exports = { mostrarMenu, pausa, ingresarDato };
