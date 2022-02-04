@@ -1,12 +1,16 @@
 const mensajes = require('./helpers/inquirer');
 const Tareas = require('./models/tareas');
-const { guardarDB } = require('./helpers/guardarArchivo');
+const { guardarDB, leerDB } = require('./helpers/guardarArchivo');
 
 console.clear();
 
 const main = async () => {
   let opcion = 0;
   const tareas = new Tareas();
+  console.log('Leyendo BD...');
+  const tareasDB = leerDB('./database/tareas.json');
+  console.log(tareasDB);
+  await mensajes.pausa();
   do {
     opcion = await mensajes.mostrarMenu();
     switch (opcion.opcion) {
