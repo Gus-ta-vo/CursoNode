@@ -9,8 +9,14 @@ const main = async () => {
   const tareas = new Tareas();
   console.log('Leyendo BD...');
   const tareasDB = leerDB('./database/tareas.json');
+  tareas.cargarTareasFromArray(tareasDB);
+  // puntos para controlar lo que se fue cargando
+  /*
   console.log(tareasDB);
   await mensajes.pausa();
+  console.log(tareas.listadoArreglo);
+  await mensajes.pausa();
+  */
   do {
     opcion = await mensajes.mostrarMenu();
     switch (opcion.opcion) {
@@ -18,16 +24,19 @@ const main = async () => {
         tareas.crearTarea(await mensajes.ingresarDato('Descripcion de la tarea:'));
         break;
       case 2:
-        console.log(tareas.listadoArreglo);
+        tareas.listadoCompleto();
+        break;
+
+      case 7:
+        console.log('Guardando cambios...');
+        guardarDB('./database/tareas.json', JSON.stringify(tareas.listadoArreglo));
         break;
 
       default:
         break;
     }
-    console.log('Guardando cambios...');
-    guardarDB('./database/tareas.json', JSON.stringify(tareas.listadoArreglo));
     await mensajes.pausa();
-  } while (opcion.opcion !== 0);
+  } while (opcion.opcion !== 0 && opcion.opcion !== 7);
 };
 
 main();

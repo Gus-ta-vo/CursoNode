@@ -1,3 +1,4 @@
+const colors = require('colors');
 const Tarea = require('./tarea');
 
 class Tareas {
@@ -18,6 +19,18 @@ class Tareas {
   crearTarea(desc) {
     const tarea = new Tarea(desc);
     this.listado[tarea.id] = tarea;
+  }
+
+  cargarTareasFromArray(arreglo = []) {
+    arreglo.forEach((elemento) => {
+      this.listado[elemento.id] = elemento;
+    });
+  }
+
+  listadoCompleto() {
+    this.listadoArreglo.forEach((elemento, indice) => {
+      console.log(` ${colors.green(indice + 1)} ${colors.white(elemento.desc)} :: ${(elemento.completadoEn) ? colors.green('COMPLETA') : colors.red('PENDIENTE')}`);
+    });
   }
 }
 

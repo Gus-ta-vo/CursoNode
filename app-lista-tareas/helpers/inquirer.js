@@ -19,7 +19,8 @@ const mostrarMenu = async () => {
           { value: 4, name: `${colors.green(4)} . Listar tareas pendientes` },
           { value: 5, name: `${colors.green(5)} . Completar tareas(s)` },
           { value: 6, name: `${colors.green(6)} . Borrar tarea` },
-          { value: 0, name: `${colors.red(0)} ${colors.white('Salir')}` },
+          { value: 7, name: `${colors.green(7)} ${colors.white('Salir')} ${colors.green('GRABAR CAMBIOS')}` },
+          { value: 0, name: `${colors.red(0)} ${colors.white('Salir')} ${colors.red('NO GRABAR CAMBIOS')}` },
         ],
       },
     ]);
