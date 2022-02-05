@@ -34,7 +34,13 @@ const main = async () => {
         break;
       case 5:
         const completar = await mensajes.mostrarListadoChecklist(tareas.listadoArreglo);
-        console.log(completar);
+        const confirmarMarcado = await mensajes.confirmar('Confirme por favor para completar');
+        if (confirmarMarcado.ok) {
+          tareas.toggleCompletadas(completar.ids);
+          console.log('Tareas completadas');
+        } else {
+          console.log('Cancelado');
+        }
         break;
 
       case 6:

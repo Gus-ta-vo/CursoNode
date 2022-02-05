@@ -53,7 +53,7 @@ const mostrarListadoChecklist = async (arreglo = []) => {
     .prompt([
       {
         type: 'checkbox',
-        name: 'lds',
+        name: 'ids',
         message: 'Selecciones',
         choices: opciones,
       },
