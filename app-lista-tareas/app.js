@@ -32,6 +32,10 @@ const main = async () => {
       case 4:
         tareas.listarPendientesCompletadas(false);
         break;
+      case 5:
+        const completar = await mensajes.mostrarListadoChecklist(tareas.listadoArreglo);
+        console.log(completar);
+        break;
 
       case 6:
         const idBorrar = await mensajes.listadoTareasBorrar(tareas.listadoArreglo);

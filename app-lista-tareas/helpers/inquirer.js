@@ -44,6 +44,23 @@ const listadoTareasBorrar = async (arreglo = []) => {
   return opcion;
 };
 
+const mostrarListadoChecklist = async (arreglo = []) => {
+  const opciones = [];
+  arreglo.forEach((elemento, indice) => {
+    opciones.push({ value: elemento.id, name: `${indice + 1} . ${elemento.desc}`, checked: elemento.completadoEn !== null });
+  });
+  const opcion = await inquirer
+    .prompt([
+      {
+        type: 'checkbox',
+        name: 'lds',
+        message: 'Selecciones',
+        choices: opciones,
+      },
+    ]);
+  return opcion;
+};
+
 const pausa = async () => {
   await inquirer
     .prompt([
@@ -82,5 +99,5 @@ const ingresarDato = async (mensaje) => {
 };
 
 module.exports = {
-  mostrarMenu, pausa, ingresarDato, listadoTareasBorrar, confirmar,
+  mostrarMenu, pausa, ingresarDato, listadoTareasBorrar, confirmar, mostrarListadoChecklist,
 };
