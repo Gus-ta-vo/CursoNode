@@ -33,9 +33,27 @@ const main = async () => {
         tareas.listarPendientesCompletadas(false);
         break;
 
+      case 6:
+        const idBorrar = await mensajes.listadoTareasBorrar(tareas.listadoArreglo);
+        if (idBorrar.opcion !== ' ') {
+          const confirmar = await mensajes.confirmar('Confirme por favor para eliminar');
+          if (confirmar.ok) {
+            tareas.borrarTarea(idBorrar.opcion);
+            console.log('Tarea eliminada');
+          } else {
+            console.log('Cancelado');
+          }
+        }
+        break;
+
       case 7:
-        console.log('Guardando cambios...');
-        guardarDB('./database/tareas.json', JSON.stringify(tareas.listadoArreglo));
+        const confirmar = await mensajes.confirmar('Confirme por favor para guardar cambios');
+        if (confirmar.ok) {
+          console.log('Guardando cambios...');
+          guardarDB('./database/tareas.json', JSON.stringify(tareas.listadoArreglo));
+        } else {
+          console.log('Cambios no guardados');
+        }
         break;
 
       default:

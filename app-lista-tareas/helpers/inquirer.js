@@ -27,6 +27,23 @@ const mostrarMenu = async () => {
   return opcion;
 };
 
+const listadoTareasBorrar = async (arreglo = []) => {
+  const opciones = [{ value: ' ', name: '0 . Cancelar' }];
+  arreglo.forEach((elemento, indice) => {
+    opciones.push({ value: elemento.id, name: `${indice + 1} . ${elemento.desc}` });
+  });
+  const opcion = await inquirer
+    .prompt([
+      {
+        type: 'list',
+        name: 'opcion',
+        message: 'Que tarea desea borrar?',
+        choices: opciones,
+      },
+    ]);
+  return opcion;
+};
+
 const pausa = async () => {
   await inquirer
     .prompt([
@@ -36,6 +53,16 @@ const pausa = async () => {
         message: `Presione ${colors.green('ENTER')} para continuar`,
       },
     ]);
+};
+
+const confirmar = async (mensaje) => {
+  const ok = await inquirer
+    .prompt([{
+      type: 'confirm',
+      name: 'ok',
+      message: mensaje,
+    }]);
+  return ok;
 };
 
 const ingresarDato = async (mensaje) => {
@@ -54,4 +81,6 @@ const ingresarDato = async (mensaje) => {
   return dato;
 };
 
-module.exports = { mostrarMenu, pausa, ingresarDato };
+module.exports = {
+  mostrarMenu, pausa, ingresarDato, listadoTareasBorrar, confirmar,
+};
