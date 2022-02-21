@@ -3,14 +3,15 @@
 
 //console.log(getClients)
 //console.log(getClients(123))
-
-
+const cors = require('cors')
 const express = require('express')
 require('dotenv').config()
 
 const app = express()
 const port = process.env.port
-
+app.use(cors())
+app.use(express.json());
+app.use(express.urlencoded({extended: true}));
 
 const mongoose = require('mongoose')
 mongoose.connect(process.env.MONGODB, {useNewUrlParser: true, useUnifiedTopology: true})
@@ -19,7 +20,7 @@ mongoose.connect(process.env.MONGODB, {useNewUrlParser: true, useUnifiedTopology
 
   .catch(err => console.log (err))
 
-// Archivo clients
+// Archivos clients
 app.use('/api/v1',  require('./src/routers/routers'));
 
 i=0
