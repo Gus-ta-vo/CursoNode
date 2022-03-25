@@ -2,7 +2,6 @@ const { response } = require('express');
 const accountRepository = require('../../../repositories/accountRepository');
 
 const createAccount = async (req, res = response )  =>  {
-    console.log(req.body)
     try {
       await accountRepository.save(req.body);
       return res.status(201).json({

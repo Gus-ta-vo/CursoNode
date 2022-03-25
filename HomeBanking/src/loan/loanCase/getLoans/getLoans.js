@@ -1,22 +1,22 @@
 const { response } = require('express');
-const accountRepository = require('../../../repositories/accountRepository');
+const loanRepository = require('../../../repositories/loanRepository');
 
-const getAccounts = async (req, res = response )  =>  {
-  console.log(req)
+const getLoans = async (req, res = response )  =>  {
   try {
-    const account = await accountRepository.getAll();
-    const count = await accountRepository.count();
-    if(!account){
+    const loans = await loanRepository.getAll();
+    const count = await loanRepository.count();
+    if(!loans){
       return res.status(401).json({
         message:  'Not found',
       })
     }
     res.status(200).json({
-       message: 'Accounts',
-       response: account,
+       message: 'Loans',
+       response: loans,
        total: count
     })
   } catch (error) {
+  console.log(error)
     res.status(500).json({
       message: 'Error Interno del Servidor',
       err: error
@@ -24,17 +24,17 @@ const getAccounts = async (req, res = response )  =>  {
   }
 }
 
-const getAccount = async (req, res = response )  =>  {
+const getLoan = async (req, res = response )  =>  {
   try {
-    const account = await accountRepository.getOne(req.params.id);
-    if(!account){
+    const loan = await loanRepository.getOne(req.params.id);
+    if(!loan){
        return res.status(401).json({
         message:  'Not found',
       })
     }
     res.status(200).json({
-       message: 'Account',
-       response: account,
+       message: 'Loan',
+       response: loan,
      })
   } catch (error) {
     res.status(500).json({
@@ -45,6 +45,6 @@ const getAccount = async (req, res = response )  =>  {
 }
 
   module.exports = {
-    getAccounts,
-    getAccount
+    getLoans,
+    getLoan
   }

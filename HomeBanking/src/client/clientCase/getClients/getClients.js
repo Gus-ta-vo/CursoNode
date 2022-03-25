@@ -16,6 +16,7 @@ const getClients = async (req, res = response )  =>  {
          total: count
       })
     } catch (error) {
+      console.log(error)
       res.status(500).json({
         message: 'Error Interno del Servidor',
         err: error
@@ -43,7 +44,28 @@ const getClients = async (req, res = response )  =>  {
     }
   }
 
+  const getClientPorEmail = async (req, res = response )  =>  {
+    try {
+      const client = await clientRepository.getPorEmail(req.params.email);
+      if(!client){
+        return res.status(401).json({
+          message:  'Not found',
+        })
+      }
+      res.status(200).json({
+         message: 'Client',
+         response: client,
+       })
+    } catch (error) {
+      res.status(500).json({
+        message: 'Error Interno del Servidor',
+        err: error
+      })
+    }
+  }
+
   module.exports = {
     getClients,
-    getClient
+    getClient,
+    getClientPorEmail
   }

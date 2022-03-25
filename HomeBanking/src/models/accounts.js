@@ -8,7 +8,9 @@ const accountSchema = new mongoose.Schema({
 
   balance: { type: Number, required: true, default: 0 },
 
-  client: {type: mongoose.Schema.Types.ObjectId, ref: 'client'}
+  client: {type: mongoose.Schema.Types.ObjectId, ref: 'client'},
+
+  transactions: [{type: mongoose.Schema.Types.ObjectId, ref: 'transaction'}]
 
 })
 

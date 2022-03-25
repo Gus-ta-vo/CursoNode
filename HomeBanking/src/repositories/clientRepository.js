@@ -1,8 +1,10 @@
 const Client = require('../models/clients');
 
-const getAll = async ()  =>  await Client.find().populate('accounts');
+const getAll = async ()  =>  await Client.find();
 
-const getOne = async (id)  =>  await Client.findById(id).populate('accounts');
+const getOne = async (id)  =>  await Client.findById(id);
+
+const getPorEmail = async (email)  => await Client.findOne({email: email})
 
 const count = async ()  =>  await Client.count();
 
@@ -24,6 +26,8 @@ module.exports = {
   getAll,
 
   getOne,
+
+  getPorEmail,
 
   count,
 

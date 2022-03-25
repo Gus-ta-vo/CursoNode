@@ -1,19 +1,18 @@
 const { response } = require('express');
-const accountRepository = require('../../../repositories/accountRepository');
+const cardRepository = require('../../../repositories/cardRepository');
 
-const getAccounts = async (req, res = response )  =>  {
-  console.log(req)
+const getCards = async (req, res = response )  =>  {
   try {
-    const account = await accountRepository.getAll();
-    const count = await accountRepository.count();
-    if(!account){
+    const card = await cardRepository.getAll();
+    const count = await cardRepository.count();
+    if(!card){
       return res.status(401).json({
         message:  'Not found',
       })
     }
     res.status(200).json({
-       message: 'Accounts',
-       response: account,
+       message: 'Cards',
+       response: card,
        total: count
     })
   } catch (error) {
@@ -24,17 +23,17 @@ const getAccounts = async (req, res = response )  =>  {
   }
 }
 
-const getAccount = async (req, res = response )  =>  {
+const getCard = async (req, res = response )  =>  {
   try {
-    const account = await accountRepository.getOne(req.params.id);
-    if(!account){
+    const card = await cardRepository.getOne(req.params.id);
+    if(!card){
        return res.status(401).json({
         message:  'Not found',
       })
     }
     res.status(200).json({
-       message: 'Account',
-       response: account,
+       message: 'Card',
+       response: card,
      })
   } catch (error) {
     res.status(500).json({
@@ -45,6 +44,6 @@ const getAccount = async (req, res = response )  =>  {
 }
 
   module.exports = {
-    getAccounts,
-    getAccount
+    getCards,
+    getCard
   }
